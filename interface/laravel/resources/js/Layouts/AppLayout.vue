@@ -81,6 +81,36 @@ const logout = () => {
                                     </template>
                                 </JetDropdown>
                             </div>
+                                
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:items-center sm:flex">
+                                <JetDropdown align="left" width="60">
+                                    <template #trigger>
+                                        <span class="inline-flex rounded-md">
+                                            <button type="button" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-400 hover:text-white hover:border-gray-300 focus:outline-none focus:text-white focus:border-gray-300 transition">
+                                                Tools
+
+                                                <svg
+                                                    class="ml-2 -mr-0.5 h-4 w-4"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                        </span>
+                                    </template>
+
+                                    <template #content>
+                                        <div class="w-60">
+                                            <!-- Tools Menu -->
+                                            <JetDropdownLink :href="route('tools.cardata')">
+                                                Car Data
+                                            </JetDropdownLink>
+                                        </div>
+                                    </template>
+                                </JetDropdown>
+                            </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -334,6 +364,9 @@ const logout = () => {
             <main>
                 <slot />
             </main>
+            <div class="col-10">
+                <router-view></router-view>
+            </div>
         </div>
     </div>
 </template>
