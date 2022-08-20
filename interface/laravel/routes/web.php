@@ -38,8 +38,6 @@ Route::middleware([
     })->name('monitoring.system');
 });
 
-
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -48,4 +46,14 @@ Route::middleware([
     Route::get('/dashboard/telescope', function () {
         return Inertia::render('Monitoring/Telescope');
     })->name('monitoring.telescope');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/tools/cardata', function () {
+        return Inertia::render('Tools/CarData');
+    })->name('tools.cardata');
 });

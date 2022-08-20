@@ -70,3 +70,10 @@
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+
+.vselect-style .vs__selected,
+.vselect-style .vs__search,
+.vselect-style .vs__search:focus {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
