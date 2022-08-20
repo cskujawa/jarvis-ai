@@ -39,7 +39,6 @@ services:
     command: --net_buffer_length=1K --innodb_sort_buffer_size=64K --binlog_cache_size=4K --binlog_stmt_cache_size=4K --performance_schema=off
     volumes:
       - db-data:/var/lib/mysql
-      - ./../../system/mysql/pterodactyl.sql:/docker-entrypoint-initdb.d/pterodactyl.sql
     networks:
       - jarvis
 
