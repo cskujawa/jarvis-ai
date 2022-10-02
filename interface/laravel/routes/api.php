@@ -30,4 +30,10 @@ Route::middleware('api')->group(function () {
     Route::post('/nhtsa/models', function (Request $request) {
         return NHTSA::getModels($request['params']['year'], $request['params']['make']);
     });
+    Route::post('/nhtsa/variants', function (Request $request) {
+        return NHTSA::getVariants($request['params']['year'], $request['params']['make'], $request['params']['model']);
+    });
+    Route::post('/nhtsa/safety', function (Request $request) {
+        return NHTSA::getSafety($request['params']['id']);
+    });
 });
