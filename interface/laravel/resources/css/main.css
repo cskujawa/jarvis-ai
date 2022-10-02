@@ -71,9 +71,35 @@
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.vselect-style .vs__selected,
+.vselect-style * {
+    --vs-disabled-bg: rgb(75 75 75 / var(--tw-bg-opacity));
+}
+
 .vselect-style .vs__search,
 .vselect-style .vs__search:focus {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
+    font-size: .775rem;
+    line-height: 1.25rem;
+}
+
+.vselect-style .vs__selected {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    font-size: .775rem;
+    line-height: 1.25rem;
+    text-overflow: clip;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.vselect-style .vs__selected-options {
+    height: 25px;
+    text-overflow: clip;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.vs--disabled .vs__search {
+    color: rgb(90 90 90 / var(--tw-text-opacity));
 }

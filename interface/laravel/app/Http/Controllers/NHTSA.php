@@ -35,4 +35,22 @@ class NHTSA extends Controller
 		
 		return $response['Results'];
 	}
+    
+	//Function used to get all variants for a year
+	public static function getVariants($year, $make, $model) {
+		$response = Http::withHeaders([
+			'Accept' => 'application/json'
+		])->get(config('services.nhtsa.url') . "/SafetyRatings/modelyear/" . "$year" . "/make" . "/$make" . "/model" . "/$model");
+		
+		return $response['Results'];
+	}
+    
+	//Function used to get safety data for a year
+	public static function getSafety($id) {
+		$response = Http::withHeaders([
+			'Accept' => 'application/json'
+		])->get(config('services.nhtsa.url') . "/SafetyRatings/VehicleId/" . "$id");
+		
+		return $response['Results'];
+	}
 }
