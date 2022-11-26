@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NHTSA;
+use App\Http\Controllers\Scrapy;
 use Illuminate\Support\Facades\Log;
 
 /*
@@ -21,19 +22,56 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('api')->group(function () {
-    Route::get('/nhtsa/years', function () {
-        return NHTSA::getModelYears();
-    });
-    Route::post('/nhtsa/makes', function (Request $request) {
-        return NHTSA::getMakes($request['params']['year']);
-    });
-    Route::post('/nhtsa/models', function (Request $request) {
-        return NHTSA::getModels($request['params']['year'], $request['params']['make']);
-    });
-    Route::post('/nhtsa/variants', function (Request $request) {
-        return NHTSA::getVariants($request['params']['year'], $request['params']['make'], $request['params']['model']);
-    });
-    Route::post('/nhtsa/safety', function (Request $request) {
-        return NHTSA::getSafety($request['params']['id']);
+    /*
+        NHTSA API used for populating drop-downs and data in:
+            /interface/laravel/resources/js/Pages/Tools/CarData.vue
+        This route utilizes the NHTSA controller found at:
+            /interface/laravel/app/Http/Controllers/NHTSA.php
+            For more information on how the functions in that controller work view that file
+        This route takes just a base URL and query parameters
+        The 'options' query parameter is required for the switch to determine which function to call
+        The original request parameter is returned so the request handler on the other end knows where to put the data
+        Requests that take an 'id' parameter are using the eloquent model ID
+        To reduce load on the DB, some requests include string data from other models already accessed.
+    */
+    Route::get('/nhtsa', function (Request $request) {
+        switch($request['options']){
+            case 'years':
+                return array (
+                    'request' => 'years',
+                    'results' => NHTSA::getModelYears()
+                );
+            case 'makes':
+                return array (
+                    'request' => 'makes',
+                    'results' => NHTSA::getMakes(
+                        $request['id']
+                    )
+                );
+            case 'models':
+                return array (
+                    'request' => 'models',
+                    'results' => NHTSA::getModels(
+                        $request['id'],
+                        $request['year']
+                    )
+                );
+            case 'variants':
+                return array (
+                    'request' => 'variants',
+                    'results' => NHTSA::getVariants(
+                        $request['id'], 
+                        $request['year'], 
+                        $request['make']
+                    )
+                );
+            case 'profile':
+                return array (
+                    'request' => 'profile',
+                    'results' => NHTSA::getVehicleProfile(
+                        $request['id']
+                    )
+                );
+        }
     });
 });
