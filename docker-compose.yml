@@ -10,7 +10,7 @@ services:
     build:
       args:
         user: jarvis
-        uid: 1001
+        uid: 1000
       context: ./interface/laravel
       dockerfile: ./../../Dockerfile
     image: jarvis
@@ -122,4 +122,9 @@ services:
 
 networks:
   jarvis:
+    name: jarvis
     driver: bridge
+    ipam:
+     config:
+       - subnet: 172.30.0.1/16
+         gateway: 172.30.0.1
