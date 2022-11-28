@@ -57,7 +57,3 @@ sudo ufw allow 7946/tcp
 sudo ufw allow 7946/udp
 sudo ufw allow 2377/tcp
 sudo ufw allow 4789/udp
-
-#Now it’s time to import Jarvis and start it up
-#Warning: The docker-compose file used for this project assumes the user running the show is named jarvis and the uid is 1000, if this is not the case, update that file accordingly
-git clone https://github.com/cskujawa/jarvis-ai
