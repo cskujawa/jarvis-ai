@@ -40,13 +40,11 @@
 <img src=https://github.com/cskujawa/jarvis-ai/blob/main/interface/laravel/public/image/app.png alt="App Example">
 
 ### :warning: :warning: :warning: Disclaimer :warning: :warning: :warning:
-This documentation and the project as a whole are a work in progress and I will likely be switching to a different repo to continue development.
+This documentation and the project as a whole are a work in progress.
 
 J.A.R.V.I.S. is just a really versatile information system.
 
-This project is essentially a scaffolding for much more.
-
-The front end implements a simple Laravel server utilizing the Laravel-Breeze login and Tailwind CSS scaffolding.
+The front end implements a simple Laravel server utilizing the Laravel Jetstream framework and Vue.
 
 The back end relies on NGINX, MySQL, Prometheus, CAdivsor, Redis, Docker, and Docker-Compose.
 
@@ -55,13 +53,14 @@ The back end relies on NGINX, MySQL, Prometheus, CAdivsor, Redis, Docker, and Do
 
 ### Built With
 
-Laravel provides a simple webserver setup and with the easily installable Breeze package it's a website wrapped up and ready to go. Lravel depends on MySQL for storing data.
+Laravel provides a simple webserver setup and with the easily installable Jetsream package it's a website wrapped up and ready to go. Lravel depends on MySQL for storing data. Front end built with Vue.
 
 Grafana implements graphing nirvana but requires data sources to be connected. This is where Prometheus comes in, it is able to scrape data and format it. CAdvisor is able to collect the data from various sources and store it in a Redis container.
 
 NGINX is what allows all of the containers to commuincate with each other.
 
 * [![Laravel][Laravel.com]][Laravel-url]
+* [![VueJS][VueJS.org]][Vue-url]
 * [![MySQL][Mysql.com]][Mysql-url]
 * [![Grafana][Grafana.com]][Grafana-url]
 * [![Prometheus][Prometheus.io]][Prometheus-url]
@@ -105,6 +104,8 @@ Don't forget to give the project a star! Thanks again!
 
 [Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
 [Laravel-url]: https://laravel.com
+[VueJS.org]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org
 [Mysql.com]: https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white
 [Mysql-url]: https://mysql.com
 [Grafana.com]: https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white
@@ -117,5 +118,3 @@ Don't forget to give the project a star! Thanks again!
 [Nginx-url]: https://nginx.com
 [Github.com/google/cadvisor]: https://img.shields.io/badge/CAdvsior-CAdvsior-yellowgreen
 [Cadvisor-url]: https://github.com/google/cadvisor
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
