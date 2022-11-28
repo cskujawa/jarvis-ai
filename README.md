@@ -76,71 +76,13 @@ NGINX is what allows all of the containers to commuincate with each other.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is a standalone environment that runs on Docker Compose and the monitoring requires Node Exporter to be installed on the host OS. None of the containerized apps require any dependencies to be pre-installed or exist on the host OS. That all being said, if you have Docker Compose you should be able to clone or fork this repo, change to the project directory and boot it up.
+This is a standalone environment that runs on Docker Compose and the monitoring requires Prometheus and Node Exporter to be installed on the host OS. None of the containerized apps require any dependencies to be pre-installed or exist on the host OS. That all being said, if you have Docker Compose you should be able to clone or fork this repo, change to the project directory and boot it up.
 
-### Prerequisites
+### Ubuntu Server Setup
+[Ubuntu Server Guide](https://github.com/cskujawa/jarvis-ai/blob/main/docs/ubuntu-server-config/README.md)
 
-This service was built on Ubuntu 22.04. Hasn't been tested anywhere else and I cannot guarantee functionality.
-* Installing Docker-Compose
-  ```sh
-  sudo apt install apt-transport-https ca-certificates curl software-properties-common
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-  apt-cache policy docker-ce
-  sudo apt install docker-ce
-  sudo systemctl status docker
-  sudo ufw allow 7946/tcp
-  sudo ufw allow 7946/udp
-  sudo ufw allow 2377/tcp
-  sudo ufw allow 4789/udp
-  sudo docker search ubuntu
-  sudo docker pull ubuntu
-  mkdir -p ~/.docker/cli-plugins/
-  //WARNING: there’s a chance that the variables for OS/architecture aren’t correct so check the repo for the exact and look at the request to verify they match exactly)
-  sudo curl -vL "https://github.com/docker/compose/releases/download/2.6.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  sudo chmod +x /usr/local/bin/docker-compose
-  sudo docker-compose --version
-  ```
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   gh repo clone cskujawa/jarvis-scaffolding
-   ```
-2. Change to project directory
-   ```sh
-   cd jarvis-scaffolding
-   ```
-3. Copy or create the environment file
-4. Build the project
-   ```sh
-   sudo docker-compose build app –-no-cache
-   ```
-5. Start up the containers
-   ```sh
-   sudo docker-compose up -d --force-recreate
-   ```
-6. Clear the vendor lock on the app container
-   ```sh
-   sudo docker-compose exec app rm -rf vendor composer.lock
-   ```
-7. Install composer on the app container
-   ```sh
-   sudo docker-compose exec app composer install
-   ```
-8. Generate the key for artisan on the app container
-   ```sh
-   sudo docker-compose exec app php artisan key:generate
-   ```
-9. Rebuild the app
-   ```sh
-   sudo docker-compose exec app npm run build
-   ```
-10. Visit the site, navigate to the IP address where the server is running with :8000 appended to the end.
-   
-<p align="right">(<a href="#top">back to top</a>)</p>
-
+### WSL Setup
+[WSL Guide](https://github.com/cskujawa/jarvis-ai/tree/main/docs/wsl-config)
 
 <!-- CONTRIBUTING -->
 ## Contributing
