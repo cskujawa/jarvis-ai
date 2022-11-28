@@ -45,8 +45,8 @@ sudo chown prometheus:prometheus /var/lib/prometheus
 ````
 
 Download and install prometheus
-:warning: The versions used here are specific to Ubuntu Server 22.04.1 :warning:
-:warning: The steps are not included but it is highly advised to verify sha256sum when downloading files :warning:
+##### :warning: The versions used here are specific to Ubuntu Server 22.04.1 :warning:
+##### :warning: The steps are not included but it is highly advised to verify sha256sum when downloading files :warning:
 ```sh
 curl -LO https://github.com/prometheus/prometheus/releases/download/v2.38.0/prometheus-2.38.0.linux-amd64.tar.gz
 tar xvf prometheus-2.38.0.linux-amd64.tar.gz
@@ -62,7 +62,7 @@ rm -rf prometheus-2.38.0.linux-amd64.tar.gz prometheus-2.38.0.linux-amd64
 ````
 
 Download and install node exporter
-:warning: The versions used here are specific to Ubuntu Server 22.04.1 or this project :warning:
+##### :warning: The versions used here are specific to Ubuntu Server 22.04.1 or this project :warning:
 ```sh
 curl -LO https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-amd64.tar.gz
 tar xvf node_exporter-1.4.0.linux-amd64.tar.gz
@@ -91,8 +91,8 @@ sudo ufw allow proto tcp from 172.30.0.0/16
 ````
 
 ### Docker and Docker-Compose
-:warning: If you already have Docker and Docker-Compose this step can be skipped :warning:
-:warning: The versions used here are specific to Ubuntu Server 22.04.1 or this project :warning:
+##### :warning: If you already have Docker and Docker-Compose this step can be skipped :warning:
+##### :warning: The versions used here are specific to Ubuntu Server 22.04.1 or this project :warning:
 Now we need to download install and make some configurations for Docker to work
 ```sh
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
