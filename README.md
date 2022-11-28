@@ -12,8 +12,6 @@
   </p>
 </div>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -36,7 +34,6 @@
     </li>
   </ol>
 </details>
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -73,8 +70,6 @@ NGINX is what allows all of the containers to commuincate with each other.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -85,6 +80,8 @@ This is a standalone environment that runs on Docker Compose and the monitoring 
 
 ### WSL Setup
 [WSL Guide](https://github.com/cskujawa/jarvis-ai/tree/main/docs/wsl-config)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 ## Contributing
