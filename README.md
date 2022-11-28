@@ -27,9 +27,12 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#ubuntu-server-setup">Ubuntu Server Guide</a></li>
+        <li><a href="#wsl-setup">WSL Guide</a></li>
       </ul>
+    </li>
+    <li>
+      <a href="#contributing">Contributing</a>
     </li>
   </ol>
 </details>
