@@ -57,3 +57,13 @@ Route::middleware([
         return Inertia::render('Tools/CarData');
     })->name('tools.cardata');
 });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/tools/chat', function () {
+        return Inertia::render('Tools/Chat');
+    })->name('tools.chat');
+});

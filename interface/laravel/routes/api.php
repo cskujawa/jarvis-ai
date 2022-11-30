@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NHTSA;
 use App\Http\Controllers\Scrapy;
+use App\Http\Controllers\RasaController;
 use Illuminate\Support\Facades\Log;
 
 /*
@@ -73,5 +74,11 @@ Route::middleware('api')->group(function () {
                     )
                 );
         }
+    });
+
+    Route::post('/rasa', function (Request $request) {
+        return array (
+            'response' => RasaController::askJarvis($request['message'])
+        );
     });
 });
