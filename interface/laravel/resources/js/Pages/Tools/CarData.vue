@@ -13,7 +13,7 @@ import { ElCarouselItem } from 'element-plus';
 import { ElCollapse } from 'element-plus';
 import { ElCollapseItem } from 'element-plus';
 import { ElCard } from 'element-plus';
-import { ElBadge } from 'element-plus';
+import { ElBadge } from 'element-plus'; 
 </script>
 
 <template>

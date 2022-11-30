@@ -6,7 +6,6 @@ import JetApplicationMark from '@/Jetstream/ApplicationMark.vue';
 import JetBanner from '@/Jetstream/Banner.vue';
 import JetDropdown from '@/Jetstream/Dropdown.vue';
 import JetDropdownLink from '@/Jetstream/DropdownLink.vue';
-import JetNavLink from '@/Jetstream/NavLink.vue';
 import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue';
 
 defineProps({
@@ -106,6 +105,10 @@ const logout = () => {
                                             <!-- Tools Menu -->
                                             <JetDropdownLink :href="route('tools.cardata')">
                                                 Car Data
+                                            </JetDropdownLink>
+                                            
+                                            <JetDropdownLink :href="route('tools.chat')">
+                                                Chat
                                             </JetDropdownLink>
                                         </div>
                                     </template>
@@ -364,6 +367,7 @@ const logout = () => {
             <main>
                 <slot />
             </main>
+
             <div class="col-10">
                 <router-view></router-view>
             </div>
