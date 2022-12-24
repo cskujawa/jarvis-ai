@@ -1,9 +1,15 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import { computed } from 'vue';
+import { usePage } from '@inertiajs/inertia-vue3';
+
+const props = defineProps({
+    user: Object,
+});
 </script>
 
 <template>
-    <AppLayout title="Chat">
+    <AppLayout title="Chat" :user="$page.props.user">
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <div class="overflow-hidden shadow-lg sm:rounded-lg">
@@ -38,15 +44,15 @@ import AppLayout from '@/Layouts/AppLayout.vue';
     export default {
         data() {
             return {
-                currentUserId: '1234',
+                currentUserId: "000" + this.user.id,
                 rooms: [
                     {
                         roomId: '1',
                         roomName: 'J.A.R.V.I.S.',
                         avatar: 'https://w7.pngwing.com/pngs/571/686/png-transparent-jarvis-logo-edwin-jarvis-iron-man-youtube-marvel-cinematic-universe-male-jarvis-ui-comics-superhero-computer-thumbnail.png',
                         users: [
-                            { _id: '1234', username: 'John Doe' },
-                            { _id: '4321', username: 'John Snow' }
+                            { _id: this.currentUserId, username: this.user.name },
+                            { _id: '4321', username: 'JARVIS' }
                         ]
                     }
                 ],
@@ -57,7 +63,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 
         //Function to greet visitors upon entry
         mounted() {
-            this.jarvisSays("Hello...");
+            this.jarvisSays("Hello " + this.user.name + "...");
         },
 
         methods: {
@@ -89,12 +95,10 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             },
 
             request($message){
-                axios.post("/api/rasa", {'message' : $message})
+                axios.post("/api/rasa", {'message' : $message, 'sender': this.currentUserId})
                     .then((response) => {
                         console.log("Request Handler", response.data );
                         for (var key in response.data['response']) {
-                            console.log("Key is:")
-                            console.log(key);
                             if ('text' in response.data['response'][key]) {
                                 this.jarvisSays(response.data['response'][key]['text']);
                             }
@@ -108,7 +112,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                         console.log('Internal API Error:');
                         console.log(error);
                     });
-            }
+            },
         }
     }
 </script>
