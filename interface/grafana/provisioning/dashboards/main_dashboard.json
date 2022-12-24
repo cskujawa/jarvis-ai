@@ -483,30 +483,6 @@
         "y": 1
       },
       "id": 45,
-      "libraryPanel": {
-        "description": "",
-        "meta": {
-          "connectedDashboards": 1,
-          "created": "2022-10-04T19:18:42Z",
-          "createdBy": {
-            "avatarUrl": "/grafana/avatar/46d229b033af06a191ff2267bca9ae56",
-            "id": 1,
-            "name": "admin"
-          },
-          "folderName": "General",
-          "folderUid": "",
-          "updated": "2022-10-04T19:29:03Z",
-          "updatedBy": {
-            "avatarUrl": "/grafana/avatar/46d229b033af06a191ff2267bca9ae56",
-            "id": 1,
-            "name": "admin"
-          }
-        },
-        "name": "TCP Connections",
-        "type": "stat",
-        "uid": "CHJS6BVVz",
-        "version": 2
-      },
       "links": [],
       "options": {
         "colorMode": "value",
@@ -594,30 +570,6 @@
         "y": 1
       },
       "id": 43,
-      "libraryPanel": {
-        "description": "",
-        "meta": {
-          "connectedDashboards": 1,
-          "created": "2022-10-04T19:18:31Z",
-          "createdBy": {
-            "avatarUrl": "/grafana/avatar/46d229b033af06a191ff2267bca9ae56",
-            "id": 1,
-            "name": "admin"
-          },
-          "folderName": "General",
-          "folderUid": "",
-          "updated": "2022-10-04T20:53:44Z",
-          "updatedBy": {
-            "avatarUrl": "/grafana/avatar/46d229b033af06a191ff2267bca9ae56",
-            "id": 1,
-            "name": "admin"
-          }
-        },
-        "name": "CPU IO Wait",
-        "type": "stat",
-        "uid": "lY4S6B4Vz",
-        "version": 3
-      },
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -697,30 +649,6 @@
         "y": 4
       },
       "id": 41,
-      "libraryPanel": {
-        "description": "",
-        "meta": {
-          "connectedDashboards": 1,
-          "created": "2022-10-04T19:18:16Z",
-          "createdBy": {
-            "avatarUrl": "/grafana/avatar/46d229b033af06a191ff2267bca9ae56",
-            "id": 1,
-            "name": "admin"
-          },
-          "folderName": "General",
-          "folderUid": "",
-          "updated": "2022-10-04T19:27:22Z",
-          "updatedBy": {
-            "avatarUrl": "/grafana/avatar/46d229b033af06a191ff2267bca9ae56",
-            "id": 1,
-            "name": "admin"
-          }
-        },
-        "name": "Hardware temperature",
-        "type": "gauge",
-        "uid": "JAyV6B44k",
-        "version": 3
-      },
       "links": [],
       "options": {
         "orientation": "horizontal",

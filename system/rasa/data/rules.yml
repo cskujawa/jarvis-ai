@@ -9,3 +9,8 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: Run home automations
+  steps:
+    - intent: home_automation
+    - action: action_home_automation

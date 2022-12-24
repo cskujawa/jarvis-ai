@@ -4,21 +4,27 @@ volumes:
   prometheus-data: {}
   grafana-data: {}
   db-data: {}
+  rasa-data: {}
 
 services:
   app:
-    build:
-      args:
-        user: jarvis
-        uid: 1000
-      context: ./interface/laravel
-      dockerfile: ./../../Dockerfile
     image: jarvis
     container_name: jarvis-app
     restart: unless-stopped
+    build:
+      args:
+        user: "${USER_NAME}"
+        uid: "${USER_ID}"
+      context: .
+      dockerfile: ./interface/laravel/Dockerfile
+    environment:
+      SERVICE_NAME: app
     working_dir: /var/www/
     volumes:
       - ./interface/laravel:/var/www
+    depends_on:
+      db:
+        condition: service_healthy
     networks:
       - jarvis
 
@@ -39,24 +45,33 @@ services:
     command: --net_buffer_length=1K --innodb_sort_buffer_size=64K --binlog_cache_size=4K --binlog_stmt_cache_size=4K --performance_schema=off
     volumes:
       - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
     networks:
       - jarvis
 
   nginx:
-    image: nginx:stable-alpine
+    image: nginx
     container_name: nginx
     restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./system/nginx/Dockerfile
     ports:
       - 80:80
     volumes:
       - ./interface/laravel:/var/www
-      - ./system/nginx:/etc/nginx/conf.d
+    depends_on:
+      - app
     networks:
       - jarvis
 
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
+    restart: always
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
@@ -73,11 +88,11 @@ services:
       - cadvisor
     networks:
       - jarvis
-    restart: always
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
+    restart: always
     ports:
       - 8080:8080
     volumes:
@@ -89,24 +104,13 @@ services:
     privileged: true
     devices:
       - /dev/kmsg:/dev/kmsg
-    depends_on:
-      - redis
     networks:
       - jarvis
-    restart: always
-
-  redis:
-    image: redis:latest
-    container_name: redis
-    ports:
-      - 6379:6379
-    networks:
-      - jarvis
-    restart: always
 
   grafana:
     image: grafana/grafana-oss:latest
     container_name: grafana
+    restart: always
     ports:
       - 3000:3000
     volumes:
@@ -118,18 +122,109 @@ services:
       - prometheus
     networks:
       - jarvis
-    restart: always
 
   rasa:
-    user: 1000:1000
-    image: rasa/rasa:3.3.1-full
+    image: rasa/rasa:main-spacy-en
     container_name: rasa
+    user: "${USER_ID}"
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
     ports:
       - 5005:5005
     volumes:
       - ./system/rasa:/app
     command:
       - run
+      -  --debug
+      -  --enable-api
+      -  --cors
+      -  "*"
+    networks:
+      - jarvis
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  rasa-action-server:
+    image: rasa-action-server
+    container_name: rasa-action-server
+    build:
+      args:
+        user: "${USER_NAME}"
+        uid: "${USER_ID}"
+      context: .
+      dockerfile: ./system/rasa/Dockerfile
+    environment:
+      HOMEASSISTANT_TOKEN: "${HOMEASSISTANT_TOKEN}"
+    working_dir: /app
+    command:
+      - start
+      - --debug
+      - --actions
+      - actions
+      - --cors
+      -  "*"
+    ports:
+      - 5055:5055
+    volumes:
+      - ./system/rasa/actions:/app/actions
+    depends_on:
+      - rasa
+    networks:
+      - jarvis
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - rasa-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - jarvis
+
+  #This is a temporary solution for viewing the data rasa is storing
+  pgweb:
+    image: sosedoff/pgweb
+    container_name: pgweb
+    restart: always
+    user: "${USER_ID}"
+    ports: 
+      - 8081:8081
+    links: 
+      - postgres:postgres 
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/postgres?sslmode=disable
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - jarvis
+
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    restart: always
+    volumes:
+      - ./system/home-assistant:/config
+    ports:
+      - 8123:8123
+    privileged: true
+    environment:
+      TZ: "America/New_York"
+    networks:
+      - jarvis
 
 networks:
   jarvis:

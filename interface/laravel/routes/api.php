@@ -78,7 +78,7 @@ Route::middleware('api')->group(function () {
 
     Route::post('/rasa', function (Request $request) {
         return array (
-            'response' => RasaController::askJarvis($request['message'])
+            'response' => RasaController::askJarvis($request['message'], $request['sender'])
         );
     });
 });

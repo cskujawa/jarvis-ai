@@ -15,6 +15,7 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    
 - intent: goodbye
   examples: |
     - good afternoon
@@ -28,6 +29,7 @@ nlu:
     - see you around
     - bye bye
     - see you later
+
 - intent: affirm
   examples: |
     - yes
@@ -36,6 +38,7 @@ nlu:
     - of course
     - that sounds good
     - correct
+
 - intent: deny
   examples: |
     - no
@@ -44,6 +47,7 @@ nlu:
     - I don't think so
     - don't like that
     - no way
+
 - intent: mood_great
   examples: |
     - perfect
@@ -60,6 +64,7 @@ nlu:
     - so so perfect
     - so good
     - so perfect
+
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -76,9 +81,41 @@ nlu:
     - extremly sad
     - so saad
     - so sad
+
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: home_automation
+  examples: |
+    - turn [on]{"entity": "state", "value": "on"} the [bedroom lights]{"entity": "device", "value": "bedroom lights"}
+    - turn [off]{"entity": "state", "value": "off"} the [bedroom lights]{"entity": "device", "value": "bedroom lights"}
+    - turn [on]{"entity": "state", "value": "on"} the [lights]{"entity": "device", "value": "lights"}
+    - turn [off]{"entity": "state", "value": "off"} the [lights]{"entity": "device", "value": "lights"}
+    - turn the [bedroom lights]{"entity": "device", "value": "bedroom lights"} [on]{"entity": "state", "value": "on"}
+    - turn the [bedroom lights]{"entity": "device", "value": "bedroom lights"} [off]{"entity": "state", "value": "off"}
+    - turn the [lights]{"entity": "device", "value": "lights"} [on]{"entity": "state", "value": "on"}
+    - turn the [lights]{"entity": "device", "value": "lights"} [off]{"entity": "state", "value": "off"}
+    - shut [off]{"entity": "state", "value": "off"} the [bedroom lights]{"entity": "device", "value": "bedroom lights"}
+    - shut [off]{"entity": "state", "value": "off"} the [lights]{"entity": "device", "value": "lights"}
+    - [bedroom lights]{"entity": "device", "value": "bedroom lights"} [on]{"entity": "state", "value": "on"}
+    - [bedroom lights]{"entity": "device", "value": "bedroom lights"} [off]{"entity": "state", "value": "off"}
+    - [lights]{"entity": "device", "value": "lights"} [on]{"entity": "state", "value": "on"}
+    - [lights]{"entity": "device", "value": "lights"} [off]{"entity": "state", "value": "off"}
+    - please turn [on]{"entity": "state", "value": "on"} the [bedroom lights]{"entity": "device", "value": "bedroom lights"}
+    - please turn [off]{"entity": "state", "value": "off"} the [bedroom lights]{"entity": "device", "value": "bedroom lights"}
+    - please turn [on]{"entity": "state", "value": "on"} the [lights]{"entity": "device", "value": "lights"}
+    - please turn [off]{"entity": "state", "value": "off"} the [lights]{"entity": "device", "value": "lights"}
+    - please turn the [bedroom lights]{"entity": "device", "value": "bedroom lights"} [on]{"entity": "state", "value": "on"}
+    - please turn the [bedroom lights]{"entity": "device", "value": "bedroom lights"} [off]{"entity": "state", "value": "off"}
+    - please turn the [lights]{"entity": "device", "value": "lights"} [on]{"entity": "state", "value": "on"}
+    - please turn the [lights]{"entity": "device", "value": "lights"} [off]{"entity": "state", "value": "off"}
+    - please shut [off]{"entity": "state", "value": "off"} the [bedroom lights]{"entity": "device", "value": "bedroom lights"}
+    - please shut [off]{"entity": "state", "value": "off"} the [lights]{"entity": "device", "value": "lights"}
+    - [bedroom lights]{"entity": "device", "value": "bedroom lights"} [on]{"entity": "state", "value": "on"} please
+    - [bedroom lights]{"entity": "device", "value": "bedroom lights"} [off]{"entity": "state", "value": "off"} please
+    - [lights]{"entity": "device", "value": "lights"} [on]{"entity": "state", "value": "on"} please
+    - [lights]{"entity": "device", "value": "lights"} [off]{"entity": "state", "value": "off"} please

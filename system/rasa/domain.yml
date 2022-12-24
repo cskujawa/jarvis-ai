@@ -8,6 +8,7 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - home_automation
 
 responses:
   utter_greet:
@@ -33,6 +34,30 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+
+  utter_thywillbedone:
+  - text: "Thy will be done."
+
+actions:
+  - action_home_automation
+
+entities:
+  - state
+  - device
+
+slots:
+  state:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: state
+  device:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: device
 
 session_config:
   session_expiration_time: 60  # value in minutes
