@@ -5,7 +5,7 @@
   "data": {
     "entries": [
       {
-        "entry_id": "56262a0ad8d100056020c0c8bfbb4bed",
+        "entry_id": "8df7106870fdb45d21d0e41e3c0a41b3",
         "version": 1,
         "domain": "sun",
         "title": "Sun",
@@ -15,49 +15,6 @@
         "pref_disable_polling": false,
         "source": "import",
         "unique_id": null,
-        "disabled_by": null
-      },
-      {
-        "entry_id": "28b78190505cfb400e315bdf479388f2",
-        "version": 1,
-        "domain": "met",
-        "title": "Home",
-        "data": {
-          "track_home": true
-        },
-        "options": {},
-        "pref_disable_new_entities": false,
-        "pref_disable_polling": false,
-        "source": "onboarding",
-        "unique_id": null,
-        "disabled_by": null
-      },
-      {
-        "entry_id": "42be37e0025af4679e6d3de9a4138dba",
-        "version": 1,
-        "domain": "radio_browser",
-        "title": "Radio Browser",
-        "data": {},
-        "options": {},
-        "pref_disable_new_entities": false,
-        "pref_disable_polling": false,
-        "source": "onboarding",
-        "unique_id": null,
-        "disabled_by": null
-      },
-      {
-        "entry_id": "e7ad1731893de6345b3696b9b370134d",
-        "version": 1,
-        "domain": "tplink",
-        "title": "Bedroom Lights HS105(US)",
-        "data": {
-          "host": "192.168.0.201"
-        },
-        "options": {},
-        "pref_disable_new_entities": false,
-        "pref_disable_polling": false,
-        "source": "user",
-        "unique_id": "d8:0d:17:9a:7e:8c",
         "disabled_by": null
       }
     ]

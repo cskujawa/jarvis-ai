@@ -15,6 +15,6 @@ GF_EXPLORE_ENABLED=false
 GF_HELP_ENABLED=false
 GF_PROFILE_ENABLED=false
 GF_METRICS_ENABLED=false
-GF_SERVER_DOMAIN=192.168.0.161
+GF_SERVER_DOMAIN=good-spiders.com
 GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/
 GF_SERVER_SERVE_FROM_SUB_PATH=true

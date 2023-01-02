@@ -19,7 +19,6 @@ services:
       dockerfile: ./interface/laravel/Dockerfile
     environment:
       SERVICE_NAME: app
-    working_dir: /var/www/
     volumes:
       - ./interface/laravel:/var/www
     depends_on:
@@ -61,12 +60,26 @@ services:
       dockerfile: ./system/nginx/Dockerfile
     ports:
       - 80:80
+      - 443:443
+      - 8083:8083
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     volumes:
       - ./interface/laravel:/var/www
+      - ./system/certbot/conf:/etc/letsencrypt:rw
+      - ./system/certbot/www:/var/www/certbot
     depends_on:
       - app
     networks:
       - jarvis
+      
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    restart: unless-stopped
+    volumes:
+      - ./system/certbot/conf:/etc/letsencrypt:rw
+      - ./system/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
   prometheus:
     image: prom/prometheus:latest
@@ -226,7 +239,70 @@ services:
     networks:
       - jarvis
 
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - 6379:6379
+    networks:
+      - jarvis
+    restart: always
+
+  wings:
+    image: ghcr.io/pterodactyl/wings:v1.11.0
+    container_name: wings
+    env_file:
+      - .env
+    restart: always
+    networks:
+      - jarvis
+      - wings0
+    ports:
+      - 2022:2022
+    tty: true
+    environment:
+      TZ: "UTC"
+      WINGS_UID: 988
+      WINGS_GID: 988
+      WINGS_USERNAME: pterodactyl
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/containers/:/var/lib/docker/containers/
+      - /tmp/pterodactyl/:/tmp/pterodactyl/
+      - ./system/certbot/conf/live/good-spiders.com/fullchain.pem:/etc/letsencrypt/live/wings.good-spiders.com/fullchain.pem:ro
+      - ./system/certbot/conf/live/good-spiders.com/privkey.pem:/etc/letsencrypt/live/wings.good-spiders.com/privkey.pem:ro
+      - ./game-servers/wings/data/wings/etc/:/etc/pterodactyl/
+      - ./game-servers/wings/logs:/var/log/pterodactyl/
+      - ./game-servers/wings/data:/data
+      - /var/lib/pterodactyl/:/var/lib/pterodactyl/
+    depends_on:
+      - panel
+
+  panel:
+    image: ghcr.io/pterodactyl/panel:v1.11.2
+    container_name: panel
+    restart: always
+    environment:
+      SERVICE_NAME: panel
+    env_file:
+      - ./game-servers/panel/var/.env
+    networks:
+      - jarvis
+    links:
+      - db
+      - redis
+    volumes:
+      - ./system/certbot/conf:/etc/letsencrypt
+      - ./game-servers/panel/var:/app/var
+      - ./game-servers/panel/logs/:/app/storage/logs
+      - ./game-servers/panel/nginx/:/etc/nginx/conf.d/
+    depends_on:
+      db:
+        condition: service_healthy
+
 networks:
+  local:
+    external: false
   jarvis:
     name: jarvis
     driver: bridge
@@ -234,3 +310,11 @@ networks:
      config:
        - subnet: 172.30.0.1/16
          gateway: 172.30.0.1
+  wings0:
+    name: wings0
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "172.21.0.0/16"
+    driver_opts:
+      com.docker.network.bridge.name: wings0
