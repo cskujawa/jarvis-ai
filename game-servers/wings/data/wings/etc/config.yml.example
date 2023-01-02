@@ -1,8 +1,8 @@
 debug: false
 app_name: Pterodactyl
-uuid: c346bf6b-95e6-40db-ac0f-05a61fa4227b
-token_id: xeaxVms817MkJsKX
-token: SE5FzdmwX2EhScwqCHWLFcDkjhS9kugHHhPpEp3UYUSEvCMRvbutoGWr9CcSLgqp
+uuid: 
+token_id: 
+token: 
 api:
   host: 0.0.0.0
   port: 8083
