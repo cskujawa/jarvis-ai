@@ -187,6 +187,30 @@ services:
     networks:
       - jarvis
 
+  huggingface:
+    image: huggingface
+    container_name: huggingface
+    build:
+      args:
+        user: "${USER_NAME}"
+        uid: "${USER_ID}"
+      context: .
+      dockerfile: ./system/huggingface/Dockerfile
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    working_dir: /app
+    volumes:
+      - ./system/huggingface:/app
+    ports:
+      - 5065:5065
+    networks:
+      - jarvis
+
   postgres:
     image: postgres
     container_name: postgres

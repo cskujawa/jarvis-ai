@@ -15,20 +15,19 @@ yarn-error.log
 /.vscode
 system/certbot/conf/
 system/home-assistant/*.storage
-system/home-assistant/.storage/auth_provider.homeassistant
-system/home-assistant/.storage/core.analytics
-system/home-assistant/.storage/core.area_registry
-system/home-assistant/.storage/core.config
-system/home-assistant/.storage/core.config_entries
-system/home-assistant/.storage/core.device_registry
-system/home-assistant/.storage/core.entity_registry
-system/home-assistant/.storage/core.restore_state
-system/home-assistant/.storage/core.uuid
-system/home-assistant/.storage/frontend*
-system/home-assistant/.storage/http
-system/home-assistant/.storage/http.auth
-system/home-assistant/.storage/onboarding
-system/home-assistant/.storage/person
+system/home-assistant/backups
+system/home-assistant/.cskujawa@gmail.com.august.conf
 game-servers/panel/logs/logs
 game-servers/wings/logs/install/
+game-servers/wings/data/wings/etc/config.yml
+plexms/media
+plexms/config/Library/Application Support/Plex Media Server/Cache
+plexms/config/Library/Application Support/Plex Media Server/Crash Reports
+plexms/config/Library/Application Support/Plex Media Server/Diagnostics
+plexms/config/Library/Application Support/Plex Media Server/Logs
+plexms/config/Library/Application Support/Plex Media Server/Media
+plexms/config/Library/Application Support/Plex Media Server/Metadata
+plexms/config/Library/Application Support/Plex Media Server/Plug-in Support
+plexms/config/Library/Application Support/Plex Media Server/Preferences.xml
+plexms/config/Library/Application Support/Plex Media Server/.LocalAdminToken
 *.log
