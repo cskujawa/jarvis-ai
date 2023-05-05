@@ -59,9 +59,9 @@ class Variant extends Model
 		$this->overall_side_barrier_rating = $safetyData["sideBarrierRating-Overall"];
 		$this->side_pole_crash_rating = $safetyData["SidePoleCrashRating"];
 		$this->rollover_rating = $safetyData["RolloverRating"];
-		$this->front_crash_picture_url = $safetyData["FrontCrashPicture"];
-		$this->side_crash_picture_url = $safetyData["SideCrashPicture"];
-		$this->side_pole_crash_picture_url = $safetyData["SidePolePicture"];
+		$this->front_crash_picture_url = $safetyData["FrontCrashPicture"] ?? null;
+		$this->side_crash_picture_url = $safetyData["SideCrashPicture"] ?? null;
+		$this->side_pole_crash_picture_url = $safetyData["SidePolePicture"] ?? null;
 		$this->complaints_count = $safetyData["ComplaintsCount"];
 		$this->recalls_count = $safetyData["RecallsCount"];
 		$this->investigations_count = $safetyData["InvestigationCount"];

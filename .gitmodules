@@ -1,0 +1,3 @@
+[submodule "system/huggingface/models/gpt2-xl"]
+	path = system/huggingface/models/gpt2-xl
+	url = https://huggingface.co/gpt2-xl
